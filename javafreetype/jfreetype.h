@@ -55,11 +55,19 @@ EXPORT Pointer GetGlyphBitmap(Pointer face);
 *			LOW LEVEL API
 */
 
-//EXPORT Pointer nFT_Init_FreeType();
+EXPORT Pointer nFT_Init_FreeType();
 
-//EXPORT long nFT_Done_FreeType(Pointer library);
+EXPORT long nFT_Done_FreeType(Pointer library);
 
-//EXPORT Pointer nFT_New_Library();
+EXPORT int nFT_Library_Version_Major(Pointer library);
 
-//EXPORT long nFT_Done_Library(Pointer library);
+EXPORT int nFT_Library_Version_Minor(Pointer library);
+
+EXPORT int nFT_Library_Version_Patch(Pointer library);
+
+EXPORT Pointer nFT_New_Face(Pointer library, string filepath, long index);
+
+EXPORT Pointer nFT_Done_Face(Pointer face);
+
+EXPORT FT_New_Memory_Face(Pointer library, char* filecontents, long size, long index);
 

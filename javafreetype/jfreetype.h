@@ -1,18 +1,16 @@
 #pragma once
 
+#ifndef JAVA_FREETYPE
+#define JAVA_FREETYPE
+
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
 #include <stdint.h>
 
-#ifndef Pointer
-#define Pointer long long
-#endif
+typedef long long int Pointer;
 
-
-#ifndef string
-#define string char*
-#endif
+typedef char* String;
 
 #ifndef EXPORT
 #define EXPORT __declspec(dllexport)
@@ -25,7 +23,7 @@ EXPORT Pointer CreateLibrary();
 
 EXPORT long DestroyLibrary(Pointer library);
 
-EXPORT Pointer CreateFace(Pointer library, string path, long index);
+EXPORT Pointer CreateFace(Pointer library, String path, long index);
 
 EXPORT int GetNumFaceGlyphs(Pointer face);
 
@@ -55,11 +53,14 @@ EXPORT Pointer GetGlyphBitmap(Pointer face);
 *			LOW LEVEL API
 */
 
-//EXPORT Pointer nFT_Init_FreeType();
+EXPORT Pointer nFT_Init_FreeType();
 
-//EXPORT long nFT_Done_FreeType(Pointer library);
+EXPORT void nFT_Done_FreeType(Pointer library);
 
-//EXPORT Pointer nFT_New_Library();
+EXPORT Pointer nFT_New_Face(Pointer library, String filepath, int index);
 
-//EXPORT long nFT_Done_Library(Pointer library);
+EXPORT void nFT_Done_Face(Pointer face);
 
+
+
+#endif

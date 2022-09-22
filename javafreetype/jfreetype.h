@@ -69,5 +69,5 @@ EXPORT Pointer nFT_New_Face(Pointer library, string filepath, long index);
 
 EXPORT Pointer nFT_Done_Face(Pointer face);
 
-EXPORT FT_New_Memory_Face(Pointer library, char* filecontents, long size, long index);
+EXPORT nFT_New_Memory_Face(Pointer library, char* filecontents, long size, long index);
 

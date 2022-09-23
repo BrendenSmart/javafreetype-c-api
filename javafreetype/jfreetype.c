@@ -78,3 +78,61 @@ Pointer GetGlyphBitmap(Pointer face) {
 	return f->glyph->bitmap.buffer;
 }
 
+Pointer nFT_Init_FreeType() {
+	FT_Library library;
+
+	FT_Init_FreeType(&library);
+}
+
+void nFT_Done_FreeType(Pointer library) {
+	FT_Done_FreeType(library);
+}
+
+int nFT_Library_Version_Major(Pointer library) {
+	int major;
+
+	int* minor = malloc(sizeof(int)), patch = malloc(sizeof(int));
+
+	FT_Library_Version(library, &major, minor, patch);
+
+	free(minor);
+	free(patch);
+
+	return major;
+}
+
+int nFT_Library_Version_Minor(Pointer library) {
+	int minor;
+	int* major = malloc(sizeof(int)), patch = malloc(sizeof(int));
+
+	FT_Library_Version(library, major, &minor, patch);
+
+	free(major);
+	free(patch);
+
+	return minor;
+}
+
+int nFT_Library_Version_Patch(Pointer library) {
+	int patch;
+	int* major = malloc(sizeof(int)), minor = malloc(sizeof(int));
+
+	FT_Library_Version(library, major, minor, &patch);
+
+	free(major);
+	free(minor);
+
+	return patch;
+}
+
+Pointer nFT_New_Face(Pointer library, String filepath, long index) {
+	FT_Face face;
+
+	FT_New_Face(library, filepath, index, &face);
+
+	return face;
+}
+
+void nFT_Done_Face(Pointer face) {
+	FT_Done_Face(face);
+}

@@ -5,14 +5,9 @@
 
 #include <stdint.h>
 
-#ifndef Pointer
-#define Pointer long long
-#endif
+typedef long long Pointer;
 
-
-#ifndef string
-#define string char*
-#endif
+typedef char* String;
 
 #ifndef EXPORT
 #define EXPORT __declspec(dllexport)
@@ -25,7 +20,7 @@ EXPORT Pointer CreateLibrary();
 
 EXPORT long DestroyLibrary(Pointer library);
 
-EXPORT Pointer CreateFace(Pointer library, string path, long index);
+EXPORT Pointer CreateFace(Pointer library, String path, long index);
 
 EXPORT int GetNumFaceGlyphs(Pointer face);
 
@@ -57,7 +52,7 @@ EXPORT Pointer GetGlyphBitmap(Pointer face);
 
 EXPORT Pointer nFT_Init_FreeType();
 
-EXPORT long nFT_Done_FreeType(Pointer library);
+EXPORT void nFT_Done_FreeType(Pointer library);
 
 EXPORT int nFT_Library_Version_Major(Pointer library);
 
@@ -65,9 +60,14 @@ EXPORT int nFT_Library_Version_Minor(Pointer library);
 
 EXPORT int nFT_Library_Version_Patch(Pointer library);
 
-EXPORT Pointer nFT_New_Face(Pointer library, string filepath, long index);
+EXPORT Pointer nFT_New_Face(Pointer library, String filepath, long index);
 
-EXPORT Pointer nFT_Done_Face(Pointer face);
+EXPORT void nFT_Done_Face(Pointer face);
 
-EXPORT nFT_New_Memory_Face(Pointer library, char* filecontents, long size, long index);
+EXPORT Pointer nFT_New_Memory_Face(Pointer library, char* filecontents, long size, long index);
 
+EXPORT void nFT_Library_Version(Pointer library, int* major, int* minor, int* patch);
+
+EXPORT void nFT_Set_Pixel_Sizes(Pointer face, int width, int height);
+
+EXPORT void nFT_Load_Char(Pointer face, long codepoint, int flags);

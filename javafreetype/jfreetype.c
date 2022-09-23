@@ -12,7 +12,7 @@ long DestroyLibrary(Pointer library) {
 	return FT_Done_FreeType(library);
 } 
 
-Pointer CreateFace(Pointer library, string path, long index) {
+Pointer CreateFace(Pointer library, String path, long index) {
 	FT_Face face;
 
 	FT_New_Face(library, path, index, &face);
@@ -84,34 +84,75 @@ Pointer nFT_Init_FreeType() {
 	return library;
 }
 
-long nFT_Done_FreeType(Pointer library) {
+void nFT_Done_FreeType(Pointer library) {
 	return FT_Done_FreeType(library);
 }
 
+Pointer nFT_New_Face(Pointer library, String filepath, long index) {
+	FT_Face face;
+
+	FT_New_Face(library, filepath, index, &face);
+
+	return face;
+}
+
+void nFT_Done_Face(Pointer face) {
+	FT_Done_Face(face);
+}
+
 int nFT_Library_Version_Major(Pointer library) {
-	int major, minor, patch = 0;
-	FT_Library_Version(library, &major, &minor, &patch);
-	free(&minor);
-	free(&patch);
+	int major;
+	int* minor = malloc(sizeof(int));
+	int* patch = malloc(sizeof(int));
+
+	FT_Library_Version(library, &major, minor, patch);
+	free(minor);
+	free(patch);
 	return major;
 }
 
 
-EXPORT int nFT_Library_Version_Minor(Pointer library) {
-	int major, minor, patch = 0;
-	FT_Library_Version(library, &major, &minor, &patch);
-	free(&major);
-	free(&patch);
+int nFT_Library_Version_Minor(Pointer library) {
+	int minor;
+
+	int* major = malloc(sizeof(int));
+	int* patch = malloc(sizeof(int));
+
+	FT_Library_Version(library, major, &minor, patch);
+	free(major);
+	free(patch);
 	return minor;
 }
 
-EXPORT int nFT_Library_Version_Patch(Pointer library) {
-	int major, minor, patch = 0;
-	FT_Library_Version(library, &major, &minor, &patch);
-	free(&major);
-	free(&minor);
+int nFT_Library_Version_Patch(Pointer library) {
+	int patch;
+
+	int* major = malloc(sizeof(int));
+	int* minor = malloc(sizeof(int));
+
+	FT_Library_Version(library, major, minor, &patch);
+	free(major);
+	free(minor);
 	return patch;
 }
 
+Pointer nFT_New_Memory_Face(Pointer library, char* filecontents, long size, long index) {
+	FT_Face face;
+
+	FT_New_Memory_Face(library, filecontents, size, index, &face);
+
+	return face;
+}
+
+void nFT_Library_Version(Pointer library, int* major, int* minor, int* patch) {
+	FT_Library_Version(library, major, minor, patch);
+}
 
 
+void nFT_Set_Pixel_Sizes(Pointer face, int width, int height) {
+	FT_Set_Pixel_Sizes(face, width, height);
+}
+
+void nFT_Load_Char(Pointer face, long codepoint, int flags) {
+	FT_Load_Char(face, codepoint, flags);
+}

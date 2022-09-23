@@ -64,3 +64,10 @@ EXPORT Pointer nFT_New_Face(Pointer library, String filepath, long index);
 
 EXPORT void nFT_Done_Face(Pointer face);
 
+EXPORT Pointer nFT_New_Memory_Face(Pointer library, char* filecontents, long size, long index);
+
+EXPORT void nFT_Library_Version(Pointer library, int* major, int* minor, int* patch);
+
+EXPORT void nFT_Set_Pixel_Sizes(Pointer face, int width, int height);
+
+EXPORT void nFT_Load_Char(Pointer face, long codepoint, int flags);

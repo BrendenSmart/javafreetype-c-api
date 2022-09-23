@@ -12,7 +12,7 @@ long DestroyLibrary(Pointer library) {
 	return FT_Done_FreeType(library);
 } 
 
-Pointer CreateFace(Pointer library, string path, long index) {
+Pointer CreateFace(Pointer library, String path, long index) {
 	FT_Face face;
 
 	FT_New_Face(library, path, index, &face);
@@ -76,40 +76,5 @@ Pointer GetGlyphBitmap(Pointer face) {
 	FT_Face f = (FT_Face)face;
 	
 	return f->glyph->bitmap.buffer;
-}
-
-Pointer nFT_Init_FreeType() {
-	FT_Library library = NULL;
-	FT_Init_FreeType(&library);
-	return library;
-}
-
-long nFT_Done_FreeType(Pointer library) {
-	return FT_Done_FreeType(library);
-}
-
-int nFT_Library_Version_Major(Pointer library) {
-	int major, minor, patch = 0;
-	FT_Library_Version(library, &major, &minor, &patch);
-	free(&minor);
-	free(&patch);
-	return major;
-}
-
-
-EXPORT int nFT_Library_Version_Minor(Pointer library) {
-	int major, minor, patch = 0;
-	FT_Library_Version(library, &major, &minor, &patch);
-	free(&major);
-	free(&patch);
-	return minor;
-}
-
-EXPORT int nFT_Library_Version_Patch(Pointer library) {
-	int major, minor, patch = 0;
-	FT_Library_Version(library, &major, &minor, &patch);
-	free(&major);
-	free(&minor);
-	return patch;
 }
 

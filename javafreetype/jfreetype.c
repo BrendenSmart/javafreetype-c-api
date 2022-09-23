@@ -119,17 +119,6 @@ int nFT_Library_Version_Minor(Pointer library) {
 
 	free(major);
 	free(patch);
-
-int nFT_Library_Version_Minor(Pointer library) {
-	int minor;
-
-	int* major = malloc(sizeof(int));
-	int* patch = malloc(sizeof(int));
-
-	FT_Library_Version(library, major, &minor, patch);
-	free(major);
-	free(patch);
-	return minor;
 }
 
 int nFT_Library_Version_Patch(Pointer library) {
@@ -164,3 +153,4 @@ void nFT_Set_Pixel_Sizes(Pointer face, int width, int height) {
 void nFT_Load_Char(Pointer face, long codepoint, int flags) {
 	FT_Load_Char(face, codepoint, flags);
 }
+

@@ -154,3 +154,36 @@ void nFT_Load_Char(Pointer face, long codepoint, int flags) {
 	FT_Load_Char(face, codepoint, flags);
 }
 
+Pointer nFT_Get_Bitmap(Pointer glyph) {
+	return ((FT_GlyphSlot)glyph)->bitmap.buffer;
+}
+
+Pointer nFT_Get_Glyph(Pointer face) {
+	FT_GlyphSlot glyph = (FT_GlyphSlot) ((FT_Face) face)->glyph;
+	return glyph;
+}
+
+int nFT_Get_Glyph_Bitmap_Width(Pointer glyph) {
+	FT_GlyphSlot ftglyph = (FT_GlyphSlot)glyph;
+	return ftglyph->bitmap.width;
+}
+
+int nFT_Get_Glyph_Bitmap_Rows(Pointer glyph) {
+	FT_GlyphSlot ftglyph = (FT_GlyphSlot)glyph;
+	return ftglyph->bitmap.rows;
+}
+
+int nFT_Get_Glyph_Advance(Pointer glyph) {
+	FT_GlyphSlot ftglyph = (FT_GlyphSlot)glyph;
+	return ftglyph->advance.x;
+}
+
+int nFT_Get_Glyph_Bitmap_Left(Pointer glyph) {
+	FT_GlyphSlot ftglyph = (FT_GlyphSlot)glyph;
+	return ftglyph->bitmap_left;
+}
+
+int nFT_FT_Get_Glyph_Bitmap_Top(Pointer glyph) {
+	FT_GlyphSlot ftglyph = (FT_GlyphSlot)glyph;
+	return ftglyph->bitmap_top;
+}

@@ -71,3 +71,17 @@ EXPORT void nFT_Library_Version(Pointer library, int* major, int* minor, int* pa
 EXPORT void nFT_Set_Pixel_Sizes(Pointer face, int width, int height);
 
 EXPORT void nFT_Load_Char(Pointer face, long codepoint, int flags);
+
+EXPORT Pointer nFT_Get_Bitmap(Pointer glyph);
+
+EXPORT Pointer nFT_Get_Glyph(Pointer face);
+
+EXPORT int nFT_Get_Glyph_Bitmap_Width(Pointer glyph);
+
+EXPORT int nFT_Get_Glyph_Bitmap_Rows(Pointer glyph);
+
+EXPORT int nFT_Get_Glyph_Advance(Pointer glyph);
+
+EXPORT int nFT_Get_Glyph_Bitmap_Left(Pointer glyph);
+
+EXPORT int nFT_FT_Get_Glyph_Bitmap_Top(Pointer glyph);
